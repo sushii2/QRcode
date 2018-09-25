@@ -42,6 +42,7 @@ class ViewController: UIViewController {
         Auth.auth().signIn(withEmail: self.email.text!, password: self.password.text!) { (user, error) in
             if user != nil{
                 print("User signed in.")
+                self.performSegue(withIdentifier: "toCamera", sender: self)
             }
             if error != nil{
                 print(":(")
@@ -49,5 +50,12 @@ class ViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCamera" {
+            if let viewController = segue.destination as? CameraViewController{
+                //pass data if need be
+            }
+        }
+    }
 }
 

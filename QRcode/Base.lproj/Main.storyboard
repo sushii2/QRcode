@@ -63,11 +63,45 @@
                     <connections>
                         <outlet property="email" destination="poF-Bg-n5F" id="bHx-Df-cZM"/>
                         <outlet property="password" destination="LRy-N6-vef" id="qVx-TQ-DZC"/>
+                        <segue destination="3Op-Dy-pyz" kind="show" identifier="toCamera" id="Kdu-aG-99V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-82.400000000000006" y="126.38680659670166"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="EFS-Di-U84">
+            <objects>
+                <viewController id="3Op-Dy-pyz" customClass="CameraViewController" customModule="QRcode" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="42l-Ck-O6G">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="FWg-Oh-f5a"/>
+                    </view>
+                    <connections>
+                        <segue destination="8f8-RP-PU5" kind="show" identifier="toResume" id="AlB-tf-Bfq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QhF-A9-nae" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-82" y="923"/>
+        </scene>
+        <!--Resume View Controller-->
+        <scene sceneID="SKo-Ww-eHW">
+            <objects>
+                <viewController id="8f8-RP-PU5" customClass="ResumeViewController" customModule="QRcode" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jzd-E6-Fvg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="VnR-8e-xgz"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DBT-m0-7If" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-82" y="1659"/>
         </scene>
     </scenes>
 </document>
