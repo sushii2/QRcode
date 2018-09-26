@@ -12,7 +12,9 @@ import FirebaseStorage
 import MobileCoreServices
 
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController{
+   
+    
     
     
 
@@ -22,8 +24,9 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func uploadButtonPressed(_ sender: UIButton) {
-        let documentPicker = UIDocumentPickerViewController(documentTypes: [String(kUTTypeText),String(kUTTypeContent),String(kUTTypeItem),String(kUTTypeData)], in: .import)
-        documentPicker.delegate = self as? UIDocumentPickerDelegate
+        let documentPicker = UIDocumentPickerViewController(documentTypes: [kUTTypeText as String,kUTTypeContent as String,kUTTypeItem as String,kUTTypeData as String], in: .import)
+        documentPicker.delegate = self as! UIDocumentPickerDelegate
+        documentPicker.modalPresentationStyle = .formSheet
         self.present(documentPicker, animated: true)
     }
     
@@ -32,7 +35,18 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func uploadFilestoFirebase(data: NSURL){
+    func uploadFilestoFirebase(url: NSURL){
+        let storageRef = Storage.storage().reference(withPath: "myFiles/myResume.pdf")
+        let uploadMetaData = StorageMetadata()
+        uploadMetaData.contentType = "file/pdf"
+        let uploadTask = storageRef.putFile(from:url as URL, metadata: uploadMetaData){
+            (metadata, error) in
+            if(error != nil){
+                print("I recieved a error! \(error?.localizedDescription)")
+            }else{
+                print("upload complete! here's some metadata! \(metadata)")
+                }
+        }
         
     }
     
@@ -51,17 +65,21 @@ class ProfileViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-   /* func documentPicker(picker: UIDocumentPickerViewController, didFinishPickingMedia info:[String: AnyObject]) {
-        guard let mediaType: String = info[UIDocumentPickerViewController] as? String else {
+    /*func documentPicker(picker: UIDocumentPickerViewController, didFinishPickingMedia info:[NSData: AnyObject]) {
+        guard let mediaType: NSData = info[UIDocumentPickerViewController] as? NSData else {
             dismiss(animated: true,completion: nil)
             return
         }
     }*/
     
-    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        print(urls)
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt urls: NSURL) {
+        let myURL = urls as NSURL
+        uploadFilestoFirebase(url: myURL)
+        print("import result : \(myURL)")
+        
     }
     
+
     
         
     }
