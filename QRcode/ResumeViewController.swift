@@ -10,11 +10,14 @@ import UIKit
 
 class ResumeViewController: UIViewController {
     var scannedCode:String?
-    @IBOutlet weak var codeLabel: UILabel!
+    @IBOutlet weak var webView: UIWebView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        codeLabel.text=scannedCode
-        // Do any additional setup after loading the view.
+        
+        
+        let url: URL! = URL(string: scannedCode!)
+        webView.loadRequest(URLRequest(url: url))        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

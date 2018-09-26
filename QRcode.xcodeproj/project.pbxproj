@@ -13,8 +13,11 @@
 		5E73681E215A1B6D0051B125 /* QRcode.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E73681C215A1B6D0051B125 /* QRcode.xcdatamodeld */; };
 		5E736820215A1B6E0051B125 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E73681F215A1B6E0051B125 /* Assets.xcassets */; };
 		5E736823215A1B6E0051B125 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E736821215A1B6E0051B125 /* LaunchScreen.storyboard */; };
-		5E751C76215A229500376BF5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E751C75215A229500376BF5 /* GoogleService-Info.plist */; };
 		78A9AB5FBBFD5326B728EB76 /* Pods_QRcode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC904D2279C682217B272907 /* Pods_QRcode.framework */; };
+		C4FADD00215B4D8E00A5B6A5 /* ResumeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FADCFF215B4D8E00A5B6A5 /* ResumeViewController.swift */; };
+		C4FADD02215B4D9500A5B6A5 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FADD01215B4D9400A5B6A5 /* CameraViewController.swift */; };
+		C4FADD04215B4D9F00A5B6A5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FADD03215B4D9F00A5B6A5 /* ProfileViewController.swift */; };
+		C4FADD06215B4E0200A5B6A5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4FADD05215B4E0200A5B6A5 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +30,11 @@
 		5E73681F215A1B6E0051B125 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E736822215A1B6E0051B125 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E736824215A1B6E0051B125 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5E751C75215A229500376BF5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BC904D2279C682217B272907 /* Pods_QRcode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QRcode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4FADCFF215B4D8E00A5B6A5 /* ResumeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResumeViewController.swift; sourceTree = "<group>"; };
+		C4FADD01215B4D9400A5B6A5 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		C4FADD03215B4D9F00A5B6A5 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C4FADD05215B4E0200A5B6A5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E29D4C20A4BB71594C661DDE /* Pods-QRcode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QRcode.release.xcconfig"; path = "Pods/Target Support Files/Pods-QRcode/Pods-QRcode.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,11 +80,14 @@
 		5E736814215A1B6D0051B125 /* QRcode */ = {
 			isa = PBXGroup;
 			children = (
-				5E751C75215A229500376BF5 /* GoogleService-Info.plist */,
+				C4FADD05215B4E0200A5B6A5 /* GoogleService-Info.plist */,
 				5E736815215A1B6D0051B125 /* AppDelegate.swift */,
 				5E736817215A1B6D0051B125 /* ViewController.swift */,
 				5E736819215A1B6D0051B125 /* Main.storyboard */,
 				5E73681F215A1B6E0051B125 /* Assets.xcassets */,
+				C4FADD01215B4D9400A5B6A5 /* CameraViewController.swift */,
+				C4FADD03215B4D9F00A5B6A5 /* ProfileViewController.swift */,
+				C4FADCFF215B4D8E00A5B6A5 /* ResumeViewController.swift */,
 				5E736821215A1B6E0051B125 /* LaunchScreen.storyboard */,
 				5E736824215A1B6E0051B125 /* Info.plist */,
 				5E73681C215A1B6D0051B125 /* QRcode.xcdatamodeld */,
@@ -156,7 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E736823215A1B6E0051B125 /* LaunchScreen.storyboard in Resources */,
-				5E751C76215A229500376BF5 /* GoogleService-Info.plist in Resources */,
+				C4FADD06215B4E0200A5B6A5 /* GoogleService-Info.plist in Resources */,
 				5E736820215A1B6E0051B125 /* Assets.xcassets in Resources */,
 				5E73681B215A1B6D0051B125 /* Main.storyboard in Resources */,
 			);
@@ -234,7 +243,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4FADD04215B4D9F00A5B6A5 /* ProfileViewController.swift in Sources */,
 				5E73681E215A1B6D0051B125 /* QRcode.xcdatamodeld in Sources */,
+				C4FADD02215B4D9500A5B6A5 /* CameraViewController.swift in Sources */,
+				C4FADD00215B4D8E00A5B6A5 /* ResumeViewController.swift in Sources */,
 				5E736818215A1B6D0051B125 /* ViewController.swift in Sources */,
 				5E736816215A1B6D0051B125 /* AppDelegate.swift in Sources */,
 			);
@@ -382,7 +394,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3C8C4729VJ;
 				INFOPLIST_FILE = QRcode/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -400,7 +414,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3C8C4729VJ;
 				INFOPLIST_FILE = QRcode/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

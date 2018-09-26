@@ -8,24 +8,33 @@
 
 import UIKit
 import AVFoundation
+import Firebase
+import FirebaseStorage
+import MobileCoreServices
 
-class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, UIDocumentPickerDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
+    var qrCode:UIImage?
+    @IBOutlet weak var qrImageView: UIImageView!
     
+    @IBOutlet weak var cameraView: UIView!
     var scannedCode:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setUpCamera()
+       
+    }
+    func setUpCamera() {
         view.backgroundColor = UIColor.black
         captureSession = AVCaptureSession()     // setups captureSession, view layer, and output
         
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {  print("boop")
             return }
         let videoInput: AVCaptureDeviceInput
-       
-
+        
+        
         do{
             videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
         } catch {
@@ -51,14 +60,13 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         }
         
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = view.layer.bounds
+        previewLayer.frame = cameraView.layer.bounds
         previewLayer.videoGravity = .resizeAspectFill
-        view.layer.addSublayer(previewLayer)
+        cameraView.layer.addSublayer(previewLayer)
         
         captureSession.startRunning()
-        
+       
     }
-
     func failed() { //triggered if cant add input/output --- triggered in simulator always
         
         let alert = UIAlertController(title: "Scanning not supported", message: "Your device does not have a camera", preferredStyle: .alert)
@@ -135,5 +143,58 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         // Pass the selected object to the new view controller.
     }
     */
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt urls: URL) {
+        let myURL = urls
+        uploadFilestoFirebase(url: myURL as NSURL)
+        print("import result : \(myURL)")
+        
+    }
+    
+    func uploadFilestoFirebase(url: NSURL){
+        let storageRef = Storage.storage().reference(withPath: "myFiles/myResume.pdf")
+        let uploadMetaData = StorageMetadata()
+        uploadMetaData.contentType = ""
+        let uploadTask = storageRef.putFile(from: (url as URL), metadata: uploadMetaData){
+            (metadata, error) in
+            if(error != nil){
+                print("I recieved a error! \(error?.localizedDescription)")
+            }else{
+                print("upload complete! here's some metadata! \(metadata)")
+                storageRef.downloadURL(completion: { (url, error) in
+                    if let error = error {
+                        print(error as Any)
+                    } else {
+                        guard let imageUrl = url?.absoluteString else { return }
+                        print(imageUrl)
+                        self.qrCode = self.generateQRCode(from: imageUrl)
+                        self.qrImageView.image = self.qrCode
+                    }
+                })
+            }
+            
+        }
+    }
+    
+    func generateQRCode(from string: String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+        
+        if let filter = CIFilter(name: "CIQRCodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 3, y: 3)
+            
+            if let output = filter.outputImage?.transformed(by: transform) {
+                return UIImage(ciImage: output)
+            }
+        }
+        
+        return nil
+    }
 
+    
+    @IBAction func uploadPressed(_ sender: UIButton) {
+        let documentPicker = UIDocumentPickerViewController(documentTypes: [kUTTypeText as String,kUTTypeContent as String,kUTTypeItem as String,kUTTypeData as String], in: .import)
+        documentPicker.delegate = self
+        documentPicker.modalPresentationStyle = .formSheet
+        self.present(documentPicker, animated: true)
+    }
 }
