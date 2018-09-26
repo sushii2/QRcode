@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -63,11 +62,70 @@
                     <connections>
                         <outlet property="email" destination="poF-Bg-n5F" id="bHx-Df-cZM"/>
                         <outlet property="password" destination="LRy-N6-vef" id="qVx-TQ-DZC"/>
+                        <segue destination="3Op-Dy-pyz" kind="show" identifier="toCamera" id="Kdu-aG-99V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-82.400000000000006" y="126.38680659670166"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="EFS-Di-U84">
+            <objects>
+                <viewController id="3Op-Dy-pyz" customClass="CameraViewController" customModule="QRcode" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="42l-Ck-O6G">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="FWg-Oh-f5a"/>
+                    </view>
+                    <connections>
+                        <segue destination="8f8-RP-PU5" kind="show" identifier="toResume" id="AlB-tf-Bfq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QhF-A9-nae" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-82" y="923"/>
+        </scene>
+        <!--Resume View Controller-->
+        <scene sceneID="SKo-Ww-eHW">
+            <objects>
+                <viewController id="8f8-RP-PU5" customClass="ResumeViewController" customModule="QRcode" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jzd-E6-Fvg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCC-NX-HME">
+                                <rect key="frame" x="16" y="136" width="359" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4wN-zJ-ixW">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="done" id="ZYa-kH-xcf">
+                                        <connections>
+                                            <segue destination="Trn-Lt-Z82" kind="unwind" unwindAction="returnToCamWithSegue:" id="6vz-4I-SoZ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="VnR-8e-xgz"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="29G-Lx-QIg"/>
+                    <connections>
+                        <outlet property="codeLabel" destination="kCC-NX-HME" id="SRS-Ly-81h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DBT-m0-7If" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Trn-Lt-Z82" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-82.400000000000006" y="1658.3208395802101"/>
         </scene>
     </scenes>
 </document>
