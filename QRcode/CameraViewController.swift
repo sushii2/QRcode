@@ -17,7 +17,8 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+
+        view.backgroundColor = UIColor.black
         captureSession = AVCaptureSession()     // setups captureSession, view layer, and output
         
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {  print("boop")
@@ -41,6 +42,9 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         
         if (captureSession.canAddOutput(metadataOutput)){
             captureSession.addOutput(metadataOutput)
+            
+            metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+            metadataOutput.metadataObjectTypes = [.qr]
         } else {
             failed()
             return
@@ -89,8 +93,7 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             found(code: stringValue)
         }
         
-        dismiss(animated: true)
-    }
+        }
     
     func found(code: String){ //trigger segue to resume view
         scannedCode = code
@@ -117,7 +120,12 @@ class CameraViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             }
         }
     }
-
+    
+    @IBAction func returnToCam(segue: UIStoryboardSegue){
+        if let sourceViewController = segue.source as? ResumeViewController {
+            
+        }
+    }
     /*
     // MARK: - Navigation
 

@@ -10,9 +10,10 @@ import UIKit
 
 class ResumeViewController: UIViewController {
     var scannedCode:String?
+    @IBOutlet weak var codeLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        codeLabel.text=scannedCode
         // Do any additional setup after loading the view.
     }
 
