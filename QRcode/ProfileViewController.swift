@@ -12,7 +12,7 @@ import FirebaseStorage
 import MobileCoreServices
 
 
-class ProfileViewController: UIViewController{
+class ProfileViewController: UIViewController, UIDocumentPickerDelegate{
    
     
     
@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController{
 
     @IBAction func uploadButtonPressed(_ sender: UIButton) {
         let documentPicker = UIDocumentPickerViewController(documentTypes: [kUTTypeText as String,kUTTypeContent as String,kUTTypeItem as String,kUTTypeData as String], in: .import)
-        documentPicker.delegate = self as! UIDocumentPickerDelegate
+        documentPicker.delegate = self
         documentPicker.modalPresentationStyle = .formSheet
         self.present(documentPicker, animated: true)
     }
@@ -38,8 +38,8 @@ class ProfileViewController: UIViewController{
     func uploadFilestoFirebase(url: NSURL){
         let storageRef = Storage.storage().reference(withPath: "myFiles/myResume.pdf")
         let uploadMetaData = StorageMetadata()
-        uploadMetaData.contentType = "file/pdf"
-        let uploadTask = storageRef.putFile(from:url as URL, metadata: uploadMetaData){
+        uploadMetaData.contentType = ""
+        let uploadTask = storageRef.putFile(from: (url as URL), metadata: uploadMetaData){
             (metadata, error) in
             if(error != nil){
                 print("I recieved a error! \(error?.localizedDescription)")
@@ -72,9 +72,9 @@ class ProfileViewController: UIViewController{
         }
     }*/
     
-    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt urls: NSURL) {
-        let myURL = urls as NSURL
-        uploadFilestoFirebase(url: myURL)
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt urls: URL) {
+        let myURL = urls
+        uploadFilestoFirebase(url: myURL as NSURL)
         print("import result : \(myURL)")
         
     }
